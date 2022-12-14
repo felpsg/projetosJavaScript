@@ -1,0 +1,108 @@
+body {
+  background-color: #000;
+  height: 100%;
+  font-family: "Orbitron", serif;
+}
+
+.container {
+  width: 800px;
+  margin: 4.5rem auto;
+  color: #fff;
+  text-align: center;
+}
+
+.container h1 {
+  letter-spacing: 4.5px;
+  font-size: 4rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: #6b6a68;
+}
+
+.container .btn {
+  margin-top: 1.8rem;
+}
+
+.btn button {
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  align-items: center;
+  width: 130px;
+  margin: 10px;
+  padding: 10px 0;
+  letter-spacing: 2.5px;
+  color: #000;
+  font-family: "Orbitron", serif;
+}
+
+.container #tens {
+  font-size: 3rem;
+}
+
+#btnStart:hover {
+  transition: all 0.2s ease-in-out;
+  background-color: #008000;
+  color: #fff;
+  border: solid 1px #fff;
+}
+
+#btnPausar:hover {
+  transition: all 0.2s ease-in-out;
+  background-color: #0000ff;
+  color: #fff;
+  border: solid 1px #fff;
+}
+
+#btnResetar:hover {
+  transition: all 0.2s ease-in-out;
+  background-color: #ff0000;
+  color: #fff;
+  border: solid 1px #fff;
+}
+
+.contador span {
+  font-size: 6rem;
+  margin-top: 2rem;
+  font-family: Orbitron, serif;
+  color: #faa01a;
+  font-weight: bold;
+}
+
+/* responsividade */
+@media (max-width: 600px) {
+  .container {
+    width: auto;
+  }
+  .container h1 {
+    font-size: 2.3rem;
+  }
+  .main {
+    margin-top: 6rem;
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn button {
+    font-size: 1rem;
+    padding: 5px;
+    margin: 4px;
+    border: none;
+    border-radius: 0%;
+  }
+  .contador span {
+    font-size: 3.3rem;
+    text-align: center;
+    justify-items: center;
+    display: inline;
+  }
+  .container #tens {
+    font-size: 1rem;
+  }
+}
