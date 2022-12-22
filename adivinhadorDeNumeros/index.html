@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+80s+Fade&family=Ubuntu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Game - Adivinhador de números</title>
+</head>
+
+<body>
+  <div class="game-container">
+    <header>
+      <h1>Adivinhador de Números!</h1>
+    </header>
+  </div>
+
+  <div class="rounds">
+    <p class="round-label">Rodada <span id="round-number">1</span></p>
+    <p class="guess-label">Número Alvo: <span id="target-number">?</span></p>
+  </div>
+
+  <div class="guessing-area">
+    <div class="guess computer-guess">
+      <div class="guess-title">
+        <p class="guess-label">Computador</p>
+        <p class="score-label">Pontos: <span id="computer-score">0</span></p>
+      </div>
+      <p id="computer-guess">?</p>
+      <p class="winning-text" id="computer-wins"></p>
+    </div>
+    <div class="guess human-guess">
+      <div class="guess-title">
+        <p class="guess-label">Você</p>
+        <p class="score-label">Pontos: <span id="human-score">0</span></p>
+      </div>
+      <input type="number" id="human-guess" min=0 max=9 value=0>
+      <div class="number-controls">
+        <button class="number-control left" id="subtract" disabled>-</button>
+        <button class="number-control right" id="add">+</button>
+      </div>
+      <button class="button" id="guess">Adivinhe</button>
+    </div>
+  </div>
+
+  <div class="next-round-container">
+    <button class="button" id="next-round" disabled>Próximo Rodada</button>
+  </div>
+
+  </div>
+
+  <div class="instructions">
+    <div class="instruction">
+      <h3>Passo 1</h3>
+      <p>
+        Insira um número entre 0 e 9</p>
+    </div>
+    <div class="instruction">
+      <h3>Passo 2</h3>
+      <p>Clique em "Dar um palpite" para enviar seu palpite e ver quem ganhou a rodada.</p>
+    </div>
+    <div class="instruction">
+      <h3>Passo 3</h3>
+      <p>Clique em "Próxima Rodada" para jogar novamente</p>
+    </div>
+  </div>
+
+</body>
+<script src="game.js"></script>
+<script src="script.js"></script>
+
+</html>

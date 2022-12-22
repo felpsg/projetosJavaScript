@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000000;
+  color: #fff;
+  font-family: "Ubuntu", sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 3rem;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-family: "Rubik 80s Fade", sans-serif !important;
+}
+
+h1 {
+  background-image: radial-gradient(
+    circle at 94.23% 50%,
+    #d7c8ca 0,
+    #c6bfc0 25%,
+    #b5b5b5 50%,
+    #a4aba9 75%,
+    #95a29d 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.rounds {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 3rem;
+}
+
+.round-label {
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+
+.guess-label {
+  font-size: 2rem;
+}
