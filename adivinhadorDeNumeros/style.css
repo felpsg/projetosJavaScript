@@ -245,7 +245,26 @@ button#guess.button.winning-text {
   color: #ec3636;
 }
 
-@media screen and (max-width: 600) {
+.game-container {
+  max-width: 640px; /* largura máxima do container */
+  margin: 0 auto; /* centraliza o container */
+  text-align: center;
+}
+.guess {
+  min-width: 400px; /* largura mínima do elemento */
+  height: 400px; /* altura do elemento */
+  /* outras propriedades do elemento */
+}
+
+.guess-title {
+  /* outras propriedades do elemento */
+  width: 100%; /* largura do elemento */
+}
+@media screen and (max-width: 600px) {
   .guess {
+    min-width: 300px; /* largura mínima do elemento em dispositivos móveis */
+    height: 300px; /* altura do elemento em dispositivos móveis */
   }
 }
+
+
