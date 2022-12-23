@@ -1,75 +1,106 @@
 const output = document.getElementById("output");
 const form = document.getElementById("calc_form");
-const operand_btns = document.querySelectorAll("button[data-type=operand]");
-const operator_btns = document.querySelectorAll("button[data-type=operator]");
+const operandBtns = document.querySelectorAll("button[data-type=operand]");
+const operatorBtns = document.querySelectorAll("button[data-type=operator]");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
 form.addEventListener("reset", (e) => {
-  remove_active();
   form.querySelector('button[type="reset"]').innerText = 'AC';
+  output.value = "0";
+  equation = [];
+  isOperator = false;
+  removeActiveClasses();
 });
 
-let is_operator = false;
+let isOperator = false;
 let equation = [];
 
-const remove_active = () => {
-  operator_btns.forEach((btn) => {
+const removeActiveClasses = () => {
+  operatorBtns.forEach((btn) => {
     btn.classList.remove("active");
   });
 };
 
 const handleOperator = (operator) => {
   switch (operator) {
-    case "%":
-      output.value = parseFloat(output.value) / 100;
-      break;
-    case "invert":
-      output.value = parseFloat(output.value) * -1;
-      break;
     case "=":
       equation.push(output.value);
-      output.value = eval(equation.join(""));
-      equation = [];
-      break;
-    default:
-      let last_item = equation[equation.length - 1];
-      if (["/", "*", "+", "-"].includes(last_item) && is_operator) {
-        equation.pop();
-        equation.push(e.target.value);
+      // Verificar se a equação possui pelo menos dois itens
+      if (equation.length < 2) {
+        output.value = "Error";
       } else {
+        // Verificar se a equação possui uma divisão por 0
+        for (let i = 0; i < equation.length - 1; i++) {
+          if (equation[i] === "/" && equation[i + 1] === "0") {
+            output.value = "Error";
+            equation = [];
+            return;
+          }
+        }
+        try {
+          output.value = eval(equation.join(""));
+        } catch (e) {
+          output.value = "Error";
+        }
+      }
+      // Adicionar código para limpar o output ou adicionar verificação para não concatenar
+      //output.value = "0"; if (equation.length === 0) { output.value = e.target.value; } else { output.value = output.value + e.target.value; }
+      equation = [];
+      return;
+    default:
+      let lastItem = equation[equation.length - 1];
+      if (Number.isFinite(lastItem) && !Number.isInteger(lastItem)) {
+        equation.pop();
+        equation.push(lastItem + operator);
+      }
+      else if (["/", "*", "+", "-"].includes(lastItem) && isOperator) {
+        equation.pop();
+        equation.push(operator);
+        return;
+      }
+      else if (output.value === "" || ["/", "*", "+", "-"].includes(lastItem)) {
+        return;
+      }
+      else {
         equation.push(output.value);
         equation.push(operator);
       }
-      is_operator = true;
+      isOperator = true;
+
       break;
   }
 };
 
-operand_btns.forEach((btn) => {
+operandBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    remove_active();
-    if (output.value == "0") {
+    removeActiveClasses();
+    if (output.value === "0" || isOperator) {
       output.value = e.target.value;
     } else if (output.value.includes(".")) {
-      output.value = output.value + "" + e.target.value.replace(".", "");
-    } else if (is_operator) {
-      is_operator = false;
-      output.value = e.target.value;
+      // Verificar se o último caractere da string é um ponto flutuante
+      let lastChar = output.value.slice(-1);
+      if (Number.isFinite(lastChar) && !Number.isInteger(lastChar)) {
+        // Se for, adicionar o novo dígito depois do ponto
+        output.value = output.value + e.target.value.replace(".", "");
+      } else {
+        // Se não for, adicionar o ponto e o novo dígito
+        output.value = output.value + e.target.value;
+      }
     } else {
-      output.value = output.value + "" + e.target.value;
+      output.value = output.value + e.target.value;
     }
+    isOperator = false;
   });
 });
 
-operator_btns.forEach((btn) => {
+operatorBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    remove_active();
+    removeActiveClasses();
     e.currentTarget.classList.add("active");
     form.querySelector('button[type="reset"]').innerText = 'C';
     handleOperator(e.target.value);
   });
 });
-

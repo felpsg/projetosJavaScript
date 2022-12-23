@@ -97,3 +97,29 @@ const handleValueChange = value => {
 humanGuessInput.addEventListener('input', function (e) {
   handleValueChange(e.target.value);
 });
+
+function generateTarget() {
+  return Math.floor(Math.random() * 10);
+}
+
+function compareGuesses(humanGuess, computerGuess, target) {
+  const humanDelta = Math.abs(target - humanGuess);
+  const computerDelta = Math.abs(target - computerGuess);
+  return humanDelta < computerDelta;
+}
+
+let humanScore = 0;
+let computerScore = 0;
+function updateScore(winner) {
+  if (winner === 'human') {
+    humanScore++;
+  } else {
+    computerScore++;
+  }
+}
+
+let currentRoundNumber = 1;
+function advanceRound() {
+  currentRoundNumber++;
+}
+

@@ -21,6 +21,7 @@ html {
 button {
   cursor: pointer;
   border-radius: 0;
+  border: none;
 }
 
 input[type="text"] {
