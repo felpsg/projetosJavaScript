@@ -47,7 +47,7 @@ const handleOperator = (operator) => {
         }
       }
       // Adicionar código para limpar o output ou adicionar verificação para não concatenar
-      //output.value = "0"; if (equation.length === 0) { output.value = e.target.value; } else { output.value = output.value + e.target.value; }
+      if (equation.length === 0) { output.value = e.target.value; } else { output.value = output.value + e.target.value; }
       equation = [];
       return;
     default:
