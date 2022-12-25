@@ -169,7 +169,7 @@ input[type="number"] {
 #guess {
   height: 80px;
   width: 198px;
-  margin-top: 38px;
+  margin: 10px;
   background-color: #232627;
   color: #fff;
   font-size: 1.2rem;
@@ -196,6 +196,12 @@ input[type="number"] {
   cursor: pointer;
   border: solid 1px #fff;
   background-color: #0034dd;
+}
+.button {
+  transition: all 0.3s ease;
+}
+#next-round.button:hover {
+  transform: scale(1.1);
 }
 
 .next-round-container {
@@ -284,5 +290,8 @@ button#guess.button.winning-text {
     flex-direction: column;
   }
 }
-
-
+@media only screen and (max-width: 667px) {
+  #guess {
+    padding: 8px;
+  }
+}

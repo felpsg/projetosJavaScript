@@ -11,6 +11,7 @@ const targetNumberDisplay = document.getElementById('target-number');
 const computerWinsDisplay = document.getElementById('computer-wins');
 
 const guessButton = document.getElementById('guess');
+
 const nextRoundButton = document.getElementById('next-round');
 
 guessButton.addEventListener('click', () => {
@@ -33,12 +34,12 @@ guessButton.addEventListener('click', () => {
   updateScore(winner);
 
   // Exibe o vencedor
-  if (humanIsWinner) {
-    guessButton.innerText = 'VOCÊ GANHOU!!!';
+  if (!humanIsWinner) {
+    guessButton.innerText = 'Computador Venceu!!!';
     guessButton.classList.toggle('winning-text');
-  } else {
-    computerWinsDisplay.innerText = 'Computador Venceu!!!';
+    computerWinsDisplay.innerText = '';
   }
+
   //outra forma de fazer o if
   // winnerDisplay.innerText = humanIsWinner ? 'You win!' : 'Computer wins!';
 
@@ -123,3 +124,41 @@ function advanceRound() {
   currentRoundNumber++;
 }
 
+guessButton.addEventListener('click', () => {
+  // Gera o valor alvo
+  target = generateTarget();
+  // Recupera o palpite do jogador
+  const currentHumanGuess = humanGuessInput.value;
+
+  const computerGuess = Math.floor(Math.random() * 10);
+  // Faça um 'palpite de computador' aleatório
+  // Exibe o palpite do computador e o alvo
+  computerGuessDisplay.innerText = computerGuess;
+  targetNumberDisplay.innerText = target;
+
+  // Determina se o humano ou o computador vence:
+  const humanIsWinner = compareGuesses(currentHumanGuess, computerGuess, target);
+  const winner = humanIsWinner ? 'human' : 'computer';
+
+  // Atualize a pontuação correta:
+  updateScore(winner);
+
+  // Exibe o vencedor
+  if (humanIsWinner) {
+    guessButton.innerText = 'VOCÊ GANHOU!!!';
+    guessButton.classList.toggle('winning-text');
+    computerWinsMessage.style.display = 'none';
+  } else {
+    computerWinsMessage.style.display = 'block';
+  }
+  //outra forma de fazer o if
+  // winnerDisplay.innerText = humanIsWinner ? 'You win!' : 'Computer wins!';
+
+  // Exibe as pontuações atuais:
+  humanScoreDisplay.innerText = humanScore;
+  computerScoreDisplay.innerText = computerScore;
+
+  // Define o estado desabilitado correto para os botões
+  guessButton.setAttribute('disabled', true);
+  nextRoundButton.removeAttribute('disabled');
+});
