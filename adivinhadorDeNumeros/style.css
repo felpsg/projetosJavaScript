@@ -267,4 +267,22 @@ button#guess.button.winning-text {
   }
 }
 
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .guessing-area {
+    flex-direction: column;
+  }
+}
+
 
